@@ -1,0 +1,39 @@
+{
+  "name": "sveltefileuploadcomponent",
+  "description": "A standalone svelte component that merges <input type='file' /> with drag drop browser functionality.",
+  "homepage": "https://github.com/vipero07/svelte-file-upload-component#readme",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Eitan Stadtlader-Miller",
+  "svelte": "src/index.svelte",
+  "module": "index.mjs",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "rollup": "^1.11.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-svelte": "^5.0.0",
+    "svelte": "^3.0.0"
+  },
+  "keywords": [
+    "svelte",
+    "upload",
+    "file"
+  ],
+  "files": [
+    "src",
+    "index.mjs",
+    "index.js"
+  ],
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vipero07/svelte-file-upload-component.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vipero07/svelte-file-upload-component/issues"
+  }
+}
