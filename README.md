@@ -1,33 +1,70 @@
-*Psst — looking for an app template? Go here --> [sveltejs/template](https://github.com/sveltejs/template)*
+# Svelte-File-Upload-Component
+This is a pretty simple component that could be used as a web component in non svelte projects. The intent is to marry the input element with drag drop browser functionality. The component itself is slotted and allows for styling.
 
----
+### Attributes
+ * multiple: This indicates if the input event should accept one or many files.
+ 
+### Events
+ * input: upon file drop or file selection via the input browse method
+ 
+### Exported Values
+ * dragging: boolean - indicates if there is an element being dragged over the component 
+ 
+## Usage
+```
+<script>
+  import FileUpload from 'sveltefileuploadcomponent';
+  
+  function gotFiles(files) {
+    //do something with files
+  }
+</script>
 
-# component-template
-
-A base for building shareable Svelte components. Clone it with [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/component-template my-new-component
-cd my-new-component
-npm install # or yarn
+<FileUpload on:input={gotFile}>
+  Whatever you want here.
+</FileUpload>
 ```
 
-Your component's source code lives in `src/index.svelte`.
+## Style
+Any elements inside the component will have the parent class "dragging" when an element is being dragged over the file upload component. This allows styling a border or changing some on screen element to indicate a drop is about to occur (or is valid).
 
-TODO
+The following shows how to change the font color when a drop event is about to occur.
 
-* [ ] some firm opinions about the best way to test components
-* [ ] update `degit` so that it automates some of the setup work
+```
+<script>
+  import FileUpload from 'sveltefileuploadcomponent';
+  
+  function gotFile(file) {
+    //do something with file
+  }
+</script>
 
+<FileUpload multiple={false} on:input={gotFile}>
+  <div class="someClass">Whatever you want here.</div>
+</FileUpload>
 
-## Setting up
+<style>
+  .dragging .someClass{
+    color: red;
+  }
+</style>
+```
 
-* Run `npm init` (or `yarn init`)
-* Replace this README with your own
+## Exported Values
+A dragging value that is true when a file is being dragged over the element
 
+The following shows how to change the font color when a drop event is about to occur.
 
-## Consuming components
+```
+<script>
+  import FileUpload from 'sveltefileuploadcomponent';
+  
+  function gotFile(file) {
+    //do something with file
+  }
+</script>
 
-Your package.json has a `"svelte"` field pointing to `src/index.svelte`, which allows Svelte apps to import the source code directly, if they are using a bundler plugin like [rollup-plugin-svelte](https://github.com/sveltejs/rollup-plugin-svelte) or [svelte-loader](https://github.com/sveltejs/svelte-loader) (where [`resolve.mainFields`](https://webpack.js.org/configuration/resolve/#resolve-mainfields) in your webpack config includes `"svelte"`). **This is recommended.**
-
-For everyone else, `npm run build` will bundle your component's source code into a plain JavaScript module (`index.mjs`) and a UMD script (`index.js`). This will happen automatically when you publish your component to npm, courtesy of the `prepublishOnly` hook in package.json.
+<FileUpload let:dragging multiple={false} on:input={gotFile}>
+  <div>This is{!dragging ? 'n't' : ''} being dragged over.</div>
+</FileUpload>
+```
