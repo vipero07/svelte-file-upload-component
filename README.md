@@ -65,6 +65,6 @@ The following shows how to change the font color when a drop event is about to o
 </script>
 
 <FileUpload let:dragging multiple={false} on:input={gotFile}>
-  <div>This is{!dragging ? 'n't' : ''} being dragged over.</div>
+  <div>This is{!dragging ? "n't" : ""} being dragged over.</div>
 </FileUpload>
 ```
