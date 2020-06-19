@@ -27,7 +27,7 @@
     }
   };
 
-  $: if (files.length) {
+  $: if (files && files.length) {
     dispatch('input', { files: multiple ? files : files[0] });
   }
 </script>
