@@ -2,12 +2,13 @@
   import {
     getFilesFromDropEvent,
     getFilesFromInputEvent
-  } from "./_file-input-utils.mjs";
-  import { createEventDispatcher } from "svelte";
+  } from './_file-input-utils.mjs';
+  import { createEventDispatcher } from 'svelte';
 
   export let multiple = true;
 
   let dragging = false;
+  let files;
   const dispatch = createEventDispatcher();
 
   function startDragging() {
@@ -22,9 +23,13 @@
     stopDragging();
     const files = getFilesFunction(event);
     if (files.length) {
-      dispatch("input", { files: multiple ? files : files[0] });
+      dispatch('input', { files: multiple ? files : files[0] });
     }
   };
+
+  $: if (files.length) {
+    dispatch('input', { files: multiple ? files : files[0] });
+  }
 </script>
 
 <style>
@@ -53,5 +58,9 @@
       <strong>browse.</strong>
     </div>
   </slot>
-  <input type="file" {multiple} on:input={onFile(getFilesFromInputEvent)} />
+  <input
+    type="file"
+    {multiple}
+    on:input={onFile(getFilesFromInputEvent)}
+    bind:files />
 </label>
